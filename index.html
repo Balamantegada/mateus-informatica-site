@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mateus Informática | Soluções em Tecnologia e Gestão (ERP)</title>
+    <meta name="description"
+        content="Desde 1994 oferecendo sistemas de controle, emissão de notas fiscais, ERP e soluções completas para o seu negócio.">
+    <meta name="keywords" content="Mateus Informática, ERP, sistemas de gestão, emissão de notas, SmartPDV, TEF">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Scroll-driven Background -->
+    <canvas id="bg-canvas"></canvas>
+    <div class="bg-overlay"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="ph ph-desktop-tower"></i>
+                <span>Mateus Informática</span>
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="#produtos" class="nav-link">Sistemas de Gestão (ERP)</a></li>
+                    <li class="dropdown">
+                        <a href="#solucoes" class="nav-link">Soluções <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Mercadão do Software</a></li>
+                            <li><a href="#">SmartPDV</a></li>
+                            <li><a href="#">Soluções TEF</a></li>
+                            <li><a href="#">Loja Virtual Integrada</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+                    <!-- <li><a href="#contato" class="nav-link">Contato</a></li> -->
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#contato" class="btn btn-primary">Fale Conosco</a>
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menu">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="badge">Tecnologia para Resultados</span>
+                <h1>Desde 1994 oferecendo as melhores soluções para sua empresa.</h1>
+                <p>Sistemas de controle, emissão de notas fiscais, ERP e soluções completas para impulsionar o seu
+                    negócio.</p>
+                <div class="hero-buttons">
+                    <a href="#solucoes" class="btn btn-primary">Conheça nossos sistemas</a>
+                    <a href="#contato" class="btn btn-outline">Fale com um especialista</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="glass-card mockup-card">
+                    <div class="mockup-header">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <div class="mockup-body">
+                        <i class="ph ph-chart-line-up"></i>
+                        <h3>Dashboard Interativo</h3>
+                        <p>Controle total do seu faturamento em tempo real.</p>
+                        <div class="mockup-stats">
+                            <div class="stat-bar"></div>
+                            <div class="stat-bar w-70"></div>
+                            <div class="stat-bar w-90"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Decorative elements -->
+                <div class="blob-shape"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section class="about" id="sobre">
+        <div class="container about-content">
+            <div class="about-image">
+                <div class="experience-badge">
+                    <span class="years">30+</span>
+                    <span class="text">Anos de Experiência</span>
+                </div>
+                <div class="abstract-grid">
+                    <div class="grid-item"><i class="ph ph-cpu"></i></div>
+                    <div class="grid-item highlight"><i class="ph ph-shield-check"></i></div>
+                    <div class="grid-item"><i class="ph ph-rocket-launch"></i></div>
+                    <div class="grid-item"><i class="ph ph-headset"></i></div>
+                </div>
+            </div>
+            <div class="about-text">
+                <div class="section-title">
+                    <h2>Sobre a Empresa</h2>
+                    <p>Referência em tecnologia desde 1994.</p>
+                </div>
+                <p>Nascemos com a missão de descomplicar a gestão empresarial através de tecnologia acessível e robusta.
+                    Há quase três décadas no mercado, a <strong>Mateus Informática</strong> tem sido a parceira de
+                    confiança de centenas de empresas.</p>
+
+                <ul class="features-list">
+                    <li>
+                        <div class="icon-box"><i class="ph ph-check"></i></div>
+                        <div>
+                            <h4>Sólida Experiência</h4>
+                            <p>Atuação comprovada no desenvolvimento e implantação de soluções desde 1994.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-box"><i class="ph ph-check"></i></div>
+                        <div>
+                            <h4>Inovação Contínua</h4>
+                            <p>Tecnologias atualizadas para manter sua empresa competitiva e eficiente.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-box"><i class="ph ph-check"></i></div>
+                        <div>
+                            <h4>Suporte Humanizado</h4>
+                            <p>Compromisso com atendimento ágil, personalizado e próximo ao cliente.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soluções (Grid) -->
+    <section class="solutions bg-light" id="solucoes">
+        <div class="container">
+            <div class="section-title center">
+                <h2>Por que escolher a Mateus Informática?</h2>
+                <p>Um ecossistema completo de soluções para cada necessidade do seu negócio.</p>
+            </div>
+
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="card-icon"><i class="ph ph-desktop"></i></div>
+                    <h3>Sistemas de Gestão – ERP</h3>
+                    <p>Integração total dos processos da sua empresa, do financeiro ao estoque, com confiabilidade e
+                        segurança.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon"><i class="ph ph-receipt"></i></div>
+                    <h3>Emissão de Notas Fiscais</h3>
+                    <p>Emissão rápida e validada de NFe, NFCe e CTe, mantendo seu negócio 100% regularizado.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon"><i class="ph ph-storefront"></i></div>
+                    <h3>SmartPDV</h3>
+                    <p>Frente de caixa ágil, intuitiva e moderna, preparada para alto volume e integração com balanças.
+                    </p>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon"><i class="ph ph-credit-card"></i></div>
+                    <h3>Soluções TEF</h3>
+                    <p>Transferência Eletrônica de Fundos para recebimentos com cartão de crédito e débito de forma
+                        segura integrada ao sistema.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon"><i class="ph ph-certificate"></i></div>
+                    <h3>Certificação Digital</h3>
+                    <p>Emissão e renovação de certificados digitais e-CPF e e-CNPJ com agilidade e validade jurídica.
+                    </p>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon"><i class="ph ph-chart-bar"></i></div>
+                    <h3>Consultoria Empresarial</h3>
+                    <p>Apoio estratégico especializado para otimizar fluxos de trabalho e maximizar resultados usando
+                        software.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon"><i class="ph ph-hard-drives"></i></div>
+                    <h3>Infraestrutura de TI</h3>
+                    <p>Projetos de servidores, redes e automação garantindo que sua operação nunca pare.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon"><i class="ph ph-devices"></i></div>
+                    <h3>Hardware, Software e Serviços</h3>
+                    <p>Fornecimento de equipamentos modernos e licenciamento de softwares corporativos.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon"><i class="ph ph-headset"></i></div>
+                    <h3>Plantão de Suporte</h3>
+                    <p>Suporte técnico especializado pronto para resolver incidentes e dúvidas do dia a dia.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon"><i class="ph ph-users-three"></i></div>
+                    <h3>Serviços Personalizados</h3>
+                    <p>Desenvolvimento e adaptações customizadas para as demandas particulares do seu modelo de negócio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destaque de Produtos -->
+    <section class="products" id="produtos">
+        <div class="container">
+            <div class="section-title center">
+                <h2>Conheça Nossos Principais Produtos</h2>
+                <p>Ferramentas robustas desenvolvidas para escalar sua operação.</p>
+            </div>
+
+            <div class="product-showcase">
+                <!-- Produto 1 -->
+                <div class="product-row">
+                    <div class="product-info">
+                        <div class="icon-wrapper"><i class="ph ph-presentation-chart"></i></div>
+                        <h3>Sistemas de Gestão (ERP)</h3>
+                        <p>Nosso carro-chefe. Uma plataforma unificada que transforma dados complexos em decisões
+                            simples. Controle financeiro, gestão de estoque, compras, vendas e relatórios dinâmicos que
+                            dão visão 360º da sua empresa.</p>
+                        <a href="#contato" class="btn btn-outline">Solicitar demonstração <i
+                                class="ph ph-arrow-right"></i></a>
+                    </div>
+                    <div class="product-visual">
+                        <div class="dashboard-preview"></div>
+                    </div>
+                </div>
+
+                <!-- Produto 2 -->
+                <div class="product-row reverse">
+                    <div class="product-info">
+                        <div class="icon-wrapper"><i class="ph ph-shopping-cart-simple"></i></div>
+                        <h3>SmartPDV</h3>
+                        <p>Acelere o checkout e elimine filas. O SmartPDV é um sistema de frente de caixa desenhado para
+                            supermercados, farmácias, padarias e varejo em geral, operando de forma online e offline com
+                            sincronização automática.</p>
+                        <a href="#contato" class="btn btn-outline">Saiba mais <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                    <div class="product-visual">
+                        <div class="pdv-preview"></div>
+                    </div>
+                </div>
+
+                <!-- Produto 3 -->
+                <div class="product-row">
+                    <div class="product-info">
+                        <div class="icon-wrapper"><i class="ph ph-basket"></i></div>
+                        <h3>Loja Virtual Integrada</h3>
+                        <p>Expanda seus limites vendendo online. Oferecemos uma plataforma de e-commerce totalmente
+                            integrada ao ERP físico, unificando controle de estoque, atualização de preços e pedidos em
+                            tempo real.</p>
+                        <a href="#contato" class="btn btn-outline">Saiba mais <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                    <div class="product-visual">
+                        <div class="ecommerce-preview"></div>
+                    </div>
+                </div>
+
+                <!-- Produto 4 -->
+                <div class="product-row reverse">
+                    <div class="product-info">
+                        <div class="icon-wrapper"><i class="ph ph-cardholder"></i></div>
+                        <h3>Soluções TEF</h3>
+                        <p>Conciliação financeira automatizada. Receba pagamentos via cartão com as melhores taxas do
+                            mercado, redução de fraudes e controle absoluto diretamente no seu sistema gerencial.</p>
+                        <a href="#contato" class="btn btn-outline">Solicitar demonstração <i
+                                class="ph ph-arrow-right"></i></a>
+                    </div>
+                    <div class="product-visual">
+                        <div class="tef-preview"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="testimonials bg-light" id="depoimentos">
+        <div class="container">
+            <div class="section-title center">
+                <h2>O que dizem nossos clientes</h2>
+                <p>A confiança de quem utiliza nossas soluções diariamente.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="ph-fill ph-quotes"></i></div>
+                    <p class="review">"Desde que implantamos o ERP da Mateus Informática, reduzimos nossas perdas de
+                        estoque em 40%. O suporte é sempre ágil e resolve nossos problemas rapidamente."</p>
+                    <div class="client-info">
+                        <div class="avatar">CS</div>
+                        <div>
+                            <h4>Carlos Silva</h4>
+                            <span>Distribuidora de Alimentos</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="ph-fill ph-quotes"></i></div>
+                    <p class="review">"O SmartPDV mudou a dinâmica da nossa rede de farmácias. Extremamente fácil de
+                        treinar novos caixas e a emissão de nota é a mais rápida que já vi."</p>
+                    <div class="client-info">
+                        <div class="avatar">MR</div>
+                        <div>
+                            <h4>Mariana Ribeiro</h4>
+                            <span>Rede de Farmácias</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="ph-fill ph-quotes"></i></div>
+                    <p class="review">"A integração da nossa loja física com a Loja Virtual nos tirou a dor de cabeça de
+                        controlar dois estoques. Agora é tudo integrado e muito mais seguro."</p>
+                    <div class="client-info">
+                        <div class="avatar">AT</div>
+                        <div>
+                            <h4>Antônio Teixeira</h4>
+                            <span>Comércio de Autopeças</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="contact" id="contato">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info-panel">
+                    <h2>Vamos transformar o seu <br>negócio juntos?</h2>
+                    <p>Preencha o formulário e um de nossos especialistas entrará em contato para agendar uma
+                        demonstração.</p>
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="ph ph-envelope-simple"></i>
+                            <div>
+                                <h5>E-mail</h5>
+                                <a href="mailto:contato@mateusinformatica.com.br">contato@mateusinformatica.com.br</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="ph ph-phone"></i>
+                            <div>
+                                <h5>Telefone</h5>
+                                <a href="tel:+555430455265">(54) 3045-5265</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="ph ph-whatsapp-logo"></i>
+                            <div>
+                                <h5>WhatsApp</h5>
+                                <a href="https://wa.me/5554984025265" target="_blank">(54) 98402-5265</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-panel glass-card">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nome completo</label>
+                            <input type="text" id="name" name="name" placeholder="Ex: João da Silva" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Empresa</label>
+                            <input type="text" id="company" name="company" placeholder="Sua Empresa LTDA" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Telefone / WhatsApp</label>
+                                <input type="tel" id="phone" name="phone" placeholder="(00) 00000-0000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail profissional</label>
+                                <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem / Como podemos ajudar?</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Descreva suas necessidades..."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Solicitar Demonstração</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col brand-col">
+                    <a href="#" class="logo footer-logo">
+                        <i class="ph ph-desktop-tower"></i>
+                        <span>Mateus Informática</span>
+                    </a>
+                    <p>Sistemas de controle, emissão de notas fiscais, ERP e soluções tecnológicas.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                        <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                        <a href="#"><i class="ph ph-facebook-logo"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Nossos Endereços</h4>
+                    <div class="address-item">
+                        <i class="ph ph-map-pin"></i>
+                        <div>
+                            <p><strong>Matriz:</strong> Rua Maurício Siroski Sobrinho, 209<br>Bairro Petrópolis – Passo
+                                Fundo/RS</p>
+                            <a href="https://maps.app.goo.gl/kNoA1mQn5Q3xYP4K8" class="map-link">Ver mapa de localização
+                                <i class="ph ph-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="address-item mt-3">
+                        <i class="ph ph-map-pin"></i>
+                        <div>
+                            <p><strong>Filial:</strong> Avenida do Pardais, 841<br>Bairro Costa do Sol – Cidreira/RS</p>
+                            <a href="https://maps.app.goo.gl/MFHmBZCWsxidowwt8" class="map-link">Ver mapa de localização
+                                <i class="ph ph-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Atendimento</h4>
+                    <p><i class="ph ph-clock"></i> <strong>Segunda à Sexta</strong></p>
+                    <p>08:00h às 12:00h</p>
+                    <p>13:30h às 18:00h</p>
+
+                    <div class="mt-4">
+                        <h4>Links Úteis</h4>
+                        <ul class="footer-links">
+                            <li><a href="#solucoes">Todos os Sistemas</a></li>
+                            <li><a href="#">Área do Cliente</a></li>
+                            <li><a href="#">Suporte Remoto</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>Copyright &copy; 2026 – Mateus Informática. Todos os direitos reservados.</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <i class="ph ph-cookie"></i>
+            <p>Ao continuar a navegar no site, você está de acordo com a nossa <a href="#">política de privacidade</a>.
+            </p>
+        </div>
+        <button class="btn btn-primary" id="acceptCookies">Aceitar</button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>
