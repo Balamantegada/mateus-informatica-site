@@ -1,72 +1,15 @@
+import { BackgroundSystem } from './js/BackgroundSystem.js';
+
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* --- Scroll-driven Animated Background --- */
-    const bgCanvas = document.getElementById('bg-canvas');
-    if (bgCanvas) {
-        const context = bgCanvas.getContext('2d', { alpha: false }); // alpha: false optimizes rendering for opaque images
-        const frameCount = 80;
-
-        const currentFrame = index => (
-            `imgs/background/Create_a_seamless_202602240917_0osc5_${index.toString().padStart(3, '0')}.jpg`
-        );
-
-        const images = [];
-        let canvasStretched = false;
-
-        // Preload all frames
-        for (let i = 0; i < frameCount; i++) {
-            const img = new Image();
-            img.src = currentFrame(i);
-            img.onload = () => {
-                // Initialize canvas dimensions based on the native size of the first loaded image
-                if (!canvasStretched && img.width > 0) {
-                    bgCanvas.width = img.width;
-                    bgCanvas.height = img.height;
-                    canvasStretched = true;
-                    // Pre-render the first loaded image immediately
-                    context.drawImage(img, 0, 0);
-                }
-            };
-            images.push(img);
-        }
-
-        let targetFrame = 0;
-        let currentFrameIndex = 0;
-
-        function updateBackground() {
-            // Smoothly interpolate current frame to target frame for fluid transitions
-            currentFrameIndex += (targetFrame - currentFrameIndex) * 0.05; // Lower = smoother
-
-            let frame1 = Math.floor(currentFrameIndex);
-            let frame2 = Math.min(frameCount - 1, frame1 + 1);
-            let fraction = currentFrameIndex - frame1;
-
-            if (images[frame1] && images[frame1].complete && canvasStretched) {
-                // Frame Blending for ultra-smooth transition
-                context.globalAlpha = 1;
-                context.drawImage(images[frame1], 0, 0);
-
-                if (fraction > 0.02 && images[frame2] && images[frame2].complete) {
-                    context.globalAlpha = fraction;
-                    context.drawImage(images[frame2], 0, 0);
-                }
-                context.globalAlpha = 1; // restore alpha
-            }
-
-            requestAnimationFrame(updateBackground);
-        }
-
-        requestAnimationFrame(updateBackground);
-
-        window.addEventListener('scroll', () => {
-            const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-            if (maxScroll === 0) return;
-
-            let scrollFraction = window.scrollY / maxScroll;
-            scrollFraction = Math.max(0, Math.min(1, scrollFraction));
-
-            targetFrame = scrollFraction * (frameCount - 1);
-        }, { passive: true });
+    /* --- Procedural Dashboard Background --- */
+    const proceduralBgContainer = document.getElementById('procedural-background');
+    if (proceduralBgContainer) {
+        // Initialize with default configuration
+        new BackgroundSystem({
+            container: proceduralBgContainer
+            // Optional: pass custom cardsConfig array here
+        });
     }
 
     /* --- Navigation SCROLL Effect --- */
