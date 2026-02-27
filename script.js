@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const acceptCookiesBtn = document.getElementById('acceptCookies');
 
     // Check localStorage (show banner if not accepted)
-    if (!localStorage.getItem('mateus_cookies_accepted')) {
+    if (!localStorage.getItem('site_cookies_accepted')) {
         setTimeout(() => {
             cookieBanner.classList.add('show');
         }, 1000);
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Accept Cookies Event
     if (acceptCookiesBtn) {
         acceptCookiesBtn.addEventListener('click', () => {
-            localStorage.setItem('mateus_cookies_accepted', 'true');
+            localStorage.setItem('site_cookies_accepted', 'true');
             cookieBanner.classList.remove('show');
         });
     }
