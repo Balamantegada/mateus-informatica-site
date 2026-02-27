@@ -65,6 +65,10 @@ export class BackgroundSystem {
         this.cardInstances = []; // Store instances for animation loop
         this.animationFrameId = null;
 
+        // Scroll damping state
+        this.targetScrollY = 0;
+        this.currentScrollY = 0;
+
         this.render();
         this.bindEvents();
         this.startAnimationLoop();
@@ -129,7 +133,8 @@ export class BackgroundSystem {
                 freqX: 0.0005 + Math.random() * 0.001,
                 freqY: 0.0008 + Math.random() * 0.001,
                 ampX: 10 + Math.random() * 20, // max pixels to wobble
-                ampY: 15 + Math.random() * 30
+                ampY: 15 + Math.random() * 30,
+                scrollSensitivity: 0.005 + (Math.random() * 0.015) // Extremely subtle (far away)
             });
         });
     }
@@ -138,10 +143,19 @@ export class BackgroundSystem {
         if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
 
         let lastTime = performance.now();
+        let lastUpdateTick = 0; // For throttled value updates
 
         const animate = (timestamp) => {
             const deltaTime = timestamp - lastTime;
             lastTime = timestamp;
+
+            // Smoothing and Velocity Cap for scroll parallax
+            const maxScrollDelta = 20; // Max pixels the background can "jump" per frame
+            let scrollDelta = this.targetScrollY - this.currentScrollY;
+            if (Math.abs(scrollDelta) > maxScrollDelta) {
+                scrollDelta = Math.sign(scrollDelta) * maxScrollDelta;
+            }
+            this.currentScrollY += scrollDelta * 0.05; // Slow lerp for majestic feel
 
             // Prevent huge jumps if tab is inactive
             if (deltaTime > 100) {
@@ -168,16 +182,40 @@ export class BackgroundSystem {
                 currentX += wobbleX;
                 currentY += wobbleY;
 
-                // Screen Wrapping Logic (Infinite Ocean)
+                // Screen Wrapping Logic (X-axis stays simple)
                 if (currentX > width + boundPadding) currentX = -boundPadding;
                 if (currentX < -boundPadding) currentX = width + boundPadding;
 
-                if (currentY > height + boundPadding) currentY = -boundPadding;
-                if (currentY < -boundPadding) currentY = height + boundPadding;
+                // relative to the viewport, regardless of how much we scroll.
+                const { scrollSensitivity } = item;
+                // Match scroll direction: cards move same way as scroll but slower (creates depth)
+                const scrollOffset = this.currentScrollY * scrollSensitivity;
+                const totalHeightRange = height + boundPadding * 2;
+                let visualY = (currentY + scrollOffset + boundPadding) % totalHeightRange;
+                if (visualY < 0) visualY += totalHeightRange;
+                visualY -= boundPadding;
 
-                // Apply update
-                instance.updatePosition(currentX, currentY);
+                // Update stored base position (without scroll)
+                instance.props.x = currentX;
+                instance.props.y = currentY;
+
+                // Apply visible update
+                instance.updatePosition(currentX, visualY);
             });
+
+            // Randomly update values on cards periodically
+            if (timestamp - lastUpdateTick > 800) { // Every 0.8 seconds (faster)
+                lastUpdateTick = timestamp;
+
+                // Update 3-6 random cards per tick (more activity)
+                const numToUpdate = Math.floor(Math.random() * 4) + 3;
+                for (let i = 0; i < numToUpdate; i++) {
+                    const randomIdx = Math.floor(Math.random() * this.cardInstances.length);
+                    const card = this.cardInstances[randomIdx].instance;
+                    const newValue = this.generateRandomValue(card.props.chartType, card.props.value);
+                    card.updateValue(newValue);
+                }
+            }
 
             this.animationFrameId = requestAnimationFrame(animate);
         };
@@ -224,5 +262,39 @@ export class BackgroundSystem {
                 this.render(); // Re-render to adjust card count and layout based on new size
             }, 300);
         });
+    }
+
+    /**
+     * Updates the background elements based on scroll progress
+     * @param {number} scrollY 
+     */
+    updateScroll(scrollY) {
+        this.targetScrollY = scrollY;
+    }
+
+    /**
+     * Generates a new random value based on the card type
+     */
+    generateRandomValue(type, currentValue) {
+        if (type === 'metric' || type === 'bar') {
+            // Numeric or short text
+            if (currentValue.includes('R$')) {
+                const base = parseFloat(currentValue.replace('R$ ', '').replace('.', '').replace(',', '.'));
+                const variation = (Math.random() - 0.45) * (base * 0.05);
+                const newVal = base + variation;
+                return `R$ ${newVal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            } else if (currentValue.includes('%')) {
+                const base = parseFloat(currentValue);
+                const variation = (Math.random() - 0.5) * 2;
+                return `${Math.max(0, (base + variation)).toFixed(1)}%`;
+            } else if (!isNaN(currentValue.replace('.', ''))) {
+                const base = parseInt(currentValue.replace('.', ''));
+                const variation = Math.floor((Math.random() - 0.4) * (base * 0.1));
+                return (base + variation).toLocaleString('pt-BR');
+            }
+        }
+
+        // Default: just small variations for others or if parsing fails
+        return currentValue;
     }
 }

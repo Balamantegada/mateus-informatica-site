@@ -4,24 +4,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* --- Procedural Dashboard Background --- */
     const proceduralBgContainer = document.getElementById('procedural-background');
+    let bgSystem = null;
     if (proceduralBgContainer) {
         // Initialize with default configuration
-        new BackgroundSystem({
+        bgSystem = new BackgroundSystem({
             container: proceduralBgContainer
             // Optional: pass custom cardsConfig array here
         });
     }
 
+    /* --- Scroll Reveal Animations --- */
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
     /* --- Navigation SCROLL Effect --- */
     const header = document.getElementById('header');
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+        const scrollY = window.scrollY;
+
+        // Header shadow
+        if (scrollY > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
-    });
+
+        // Sync Background Parallax
+        if (bgSystem) {
+            bgSystem.updateScroll(scrollY);
+        }
+    }, { passive: true });
 
     /* --- Mobile Menu Toggle --- */
     const mobileToggle = document.getElementById('mobile-toggle');

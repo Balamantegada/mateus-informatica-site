@@ -84,6 +84,60 @@ export class DashboardCard {
         this.wrapper.style.transform = `translate3d(${newX}px, ${newY}px, ${translateZ}px) rotate(${rotation}deg) scale(${scale})`;
     }
 
+    /**
+     * Updates the card's numeric value with an animation
+     * @param {string} newValue 
+     */
+    updateValue(newValue) {
+        if (!this.element) return;
+        const valueElement = this.element.querySelector('.card-value');
+        if (!valueElement) return;
+
+        // Detect percentage for specialized animation
+        const isPercentage = newValue.includes('%');
+        valueElement.classList.toggle('is-percentage', isPercentage);
+
+        // Trigger animation
+        valueElement.classList.remove('updating');
+        void valueElement.offsetWidth; // Force reflow
+        valueElement.classList.add('updating');
+
+        // Update text with numeric parts isolated in spans
+        valueElement.innerHTML = this.formatValue(newValue);
+        this.props.value = newValue;
+
+        // Spawn Phantom value effect (showing the numeric part or full value)
+        const numericMatch = newValue.match(/[0-9.,]+/);
+        this.spawnPhantomValue(numericMatch ? (isPercentage ? numericMatch[0] + '%' : numericMatch[0]) : newValue);
+    }
+
+    /**
+     * Wraps numeric parts of a string in a span for targeted animation
+     * @param {string} val 
+     */
+    formatValue(val) {
+        return val.replace(/([0-9.,]+)/g, '<span class="number-part">$1</span>');
+    }
+
+    /**
+     * Spawns a temporary phantom element that floats up and fades
+     * @param {string} text 
+     */
+    spawnPhantomValue(text) {
+        if (!this.element) return;
+        const phantom = document.createElement('div');
+        phantom.className = 'phantom-value';
+        phantom.textContent = text;
+
+        // Append to the card element so it's relatively positioned
+        const card = this.element.querySelector('.procedural-card');
+        if (card) {
+            card.appendChild(phantom);
+            // Remove after animation completes
+            setTimeout(() => phantom.remove(), 1000);
+        }
+    }
+
     generateCardBody() {
         const { title, value, chartType, indicator, theme } = this.props;
 
@@ -112,7 +166,7 @@ export class DashboardCard {
                 <h4 class="card-title">${title}</h4>
                 ${indicatorHTML}
             </div>
-            <div class="card-value">${value}</div>
+            <div class="card-value ${value.includes('%') ? 'is-percentage' : ''}">${this.formatValue(value)}</div>
             <div class="card-chart">
                 ${chartHTML}
             </div>

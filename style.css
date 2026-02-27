@@ -114,6 +114,116 @@ body {
     /* Ensure no text selection or interaction */
     user-select: none;
     pointer-events: none;
+    overflow: hidden;
+    /* Fix animation leakage */
+}
+
+/* Value update animation */
+.card-value {
+    transition: color 0.3s ease;
+}
+
+.card-value .number-part {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform;
+}
+
+.card-value.updating .number-part {
+    animation: valueUpdate 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: var(--primary-light);
+}
+
+.card-value.updating.is-percentage .number-part {
+    animation: percentageUpdate 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Phantom Value Rising Effect */
+.phantom-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    pointer-events: none;
+    z-index: 10;
+    white-space: nowrap;
+    animation: phantomRise 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes phantomRise {
+    0% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -100px) scale(1.5);
+    }
+}
+
+@keyframes valueUpdate {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    30% {
+        transform: translateY(-10px) scale(1.2);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes percentageUpdate {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    30% {
+        transform: scale(1.4) rotate(5deg);
+        color: var(--accent);
+    }
+
+    60% {
+        transform: scale(1.4) rotate(-5deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Animations for main page cards */
+.solution-card,
+.testimonial-card,
+.mockup-card,
+.product-row {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+}
+
+.solution-card:hover,
+.testimonial-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+}
+
+.procedural-card {
+    animation: floatBackground 8s ease-in-out infinite alternate;
+}
+
+@keyframes floatBackground {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-5px);
+    }
 }
 
 .card-header {
@@ -305,6 +415,40 @@ body {
         transform: translateY(-6px) scale(1.08);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
+}
+
+/* Scroll Reveal Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-up {
+    transform: translateY(50px);
+}
+
+.reveal-delay-1 {
+    transition-delay: 0.2s;
+}
+
+.reveal-delay-2 {
+    transition-delay: 0.4s;
+}
+
+.reveal-delay-3 {
+    transition-delay: 0.6s;
+}
+
+/* 3D Parallax for Background */
+.procedural-bg-container {
+    transition: transform 0.5s ease-out;
 }
 
 /* Floating Animation (Removed - Now handled by JS in BackgroundSystem.js) */
